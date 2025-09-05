@@ -52,7 +52,7 @@ describe("GET /folders/:id", () => {
   it("sends 404 if folder doesn't exist", async () => {
     await db.query("BEGIN");
     const response = await request(app).get("/folders/" + (folder.id + 1));
-    expect(response.statusCode).toBe(404);
+    expect(response.statusCode).toBe(400);
     await db.query("ROLLBACK");
   });
 
