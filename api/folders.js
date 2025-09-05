@@ -8,9 +8,9 @@ import { getFolders, getFolderByIdIncludingFiles } from "../db/queries/folders.j
 router.route("/").get(async (req, res) => {
     try {
         const folders = await getFolders();
-        res.status(200).send(folders);
+        return res.status(200).send(folders);
     } catch (error) {
-        res.status(500).send(error);
+        return res.status(500).send(error);
     }
 });
 
@@ -21,7 +21,7 @@ router.route("/:id").get(async (req, res) => {
     if (!folder) {
         return res.status(400).send("Folder doesn't exist");
     }
-    res.status(200).send(folder);
+    return res.status(200).send(folder);
     
 });
 
@@ -36,5 +36,5 @@ router.route("/:id/files").post(async (req, res) => {
         return res.status(400).send("Request body is required");
     }
     const responseFile = await createFile(name, size, folder.id);
-    res.status(201).send(responseFile);
+    return res.status(201).send(responseFile);
 });

@@ -6,5 +6,5 @@ import { getFilesIncludingFolder } from "#db/queries/files";
 
 router.route("/").get(async (req, res) => {
     const files = await getFilesIncludingFolder();
-    res.send(files);
+    return res.send(files);
 });
